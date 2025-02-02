@@ -60,12 +60,14 @@
         </section>
     </div>
 
-    <!-- Formulario de Formspree (hidden for submission) -->
-    <form id="formspreeForm" action="https://formspree.io/f/movjwkye" method="POST" style="display:none;">
-        <input type="email" name="email" id="email" required />
-        <textarea name="message" id="message"></textarea>
-        <input type="hidden" name="_next" value="http://tusitio.com/gracias" />  <!-- Redirige aquí después del envío -->
-        <button type="submit">Enviar</button>
+    <!-- Formulario para enviar los datos a Formspree (no redirigirá) -->
+    <form id="formConfirmacion" style="display: none;">
+        <input type="hidden" name="nombre" id="formNombre">
+        <input type="hidden" name="asistencia" id="formAsistencia">
+        <input type="hidden" name="lugares" id="formLugares">
+        <!-- Este campo oculto es necesario para evitar la redirección a la página de agradecimiento de Formspree -->
+        <input type="hidden" name="_next" value="">
+        <button type="submit" id="enviarFormulario">Enviar a Formspree</button>
     </form>
 
     <script src="script.js"></script>
