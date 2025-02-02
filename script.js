@@ -64,8 +64,8 @@ function buscarInvitado(event) {
     }
 }
 
-// Función para guardar la confirmación de asistencia y enviarlo a Formspree
-function guardarConfirmacion(event) {
+// Función para guardar la confirmación de asistencia y enviarlo a Formspree usando fetch
+async function guardarConfirmacion(event) {
     event.preventDefault(); // Evitar recarga de página
 
     const asistencia = document.querySelector('input[name="asistencia"]:checked');
@@ -96,17 +96,29 @@ function guardarConfirmacion(event) {
         detalleGracias.textContent = "Espero verte en otra ocasión. ¡Gracias por avisarme!";
     }
 
-    // Guardar los datos en el formulario de Formspree
-    document.getElementById("formNombre").value = confirmacion.nombre;
-    document.getElementById("formAsistencia").value = confirmacion.asistencia;
-    document.getElementById("formLugares").value = confirmacion.lugaresConfirmados;
+    // Enviar el formulario a Formspree usando fetch
+    const formData = new FormData();
+    formData.append("nombre", confirmacion.nombre);
+    formData.append("asistencia", confirmacion.asistencia);
+    formData.append("lugares", confirmacion.lugaresConfirmados);
 
-    // Enviar el formulario a Formspree (pero sin redirigir a su página de agradecimiento)
-    document.getElementById("formConfirmacion").submit();
+    try {
+        const response = await fetch("https://formspree.io/f/movjwkye", {
+            method: "POST",
+            body: formData
+        });
 
-    // Ocultar la sección de confirmación y mostrar la de agradecimiento
-    document.getElementById("pagina2").style.display = "none";
-    document.getElementById("pagina4").style.display = "block";
+        if (response.ok) {
+            // Ocultar la sección de confirmación y mostrar la de agradecimiento
+            document.getElementById("pagina2").style.display = "none";
+            document.getElementById("pagina4").style.display = "block";
+        } else {
+            alert("Ocurrió un error al enviar la confirmación. Intenta nuevamente.");
+        }
+    } catch (error) {
+        console.error("Error:", error);
+        alert("Ocurrió un error. Intenta nuevamente.");
+    }
 }
 
 // Asignar eventos
