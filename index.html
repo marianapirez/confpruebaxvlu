@@ -36,21 +36,36 @@
             <button id="confirmarBtn">Enviar</button>
         </section>
 
-        <!-- Página 3: Agradecimiento -->
+        <!-- Página 3: Ver confirmaciones (solo anfitrión) -->
         <section id="pagina3" style="display: none;">
+            <h1>Confirmaciones de Asistencia</h1>
+            <table id="tablaConfirmaciones">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Asistencia</th>
+                        <th>Lugares Confirmados</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Las confirmaciones se agregarán aquí -->
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Página 4: Agradecimiento -->
+        <section id="pagina4" style="display: none;">
             <h1 id="mensajeGracias">Gracias por confirmar tu asistencia.</h1>
             <p id="detalleGracias">¡Nos vemos en mis quince años!.</p>
         </section>
     </div>
 
-    <!-- Formulario de envío a Formspree -->
-    <form id="formConfirmacion" style="display: none;" action="https://formspree.io/f/movjwkye" method="POST">
-        <input type="hidden" name="nombre" id="formNombre">
-        <input type="hidden" name="asistencia" id="formAsistencia">
-        <input type="hidden" name="lugares" id="formLugares">
-        <!-- Esto asegura que no se redirija a la página de agradecimiento de Formspree -->
-        <input type="hidden" name="_next" value="">
-        <button type="submit" id="enviarFormulario">Enviar a Formspree</button>
+    <!-- Formulario de Formspree (hidden for submission) -->
+    <form id="formspreeForm" action="https://formspree.io/f/movjwkye" method="POST" style="display:none;">
+        <input type="email" name="email" id="email" required />
+        <textarea name="message" id="message"></textarea>
+        <input type="hidden" name="_next" value="http://tusitio.com/gracias" />  <!-- Redirige aquí después del envío -->
+        <button type="submit">Enviar</button>
     </form>
 
     <script src="script.js"></script>
