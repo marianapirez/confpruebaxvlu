@@ -2,6 +2,7 @@ const invitados = {
     "Makinson dos Santos": 1,
     "Gisel Gomez": 1,
     "Prueba": 1,
+    "Andres  Ramos": 5,
     "Gisel Gomez": 1,
     "Sandra dos Santos": 2,
     "Mirtha Gomez": 1,
@@ -27,8 +28,7 @@ const invitados = {
     "Gustavo Lemos": 5,
     "Sofia Gau": 1
 };
-
-const CLAVE_ADMIN = "Luciana15"; // 🔒 Cambia esto por tu contraseña
+const CLAVE_ADMIN = "Luciana15";  // 🔒 Cambia esto por tu contraseña
 
 // Función para buscar el invitado o verificar la contraseña
 function buscarInvitado(event) {
@@ -37,7 +37,7 @@ function buscarInvitado(event) {
     let nombre = document.getElementById("nombre").value.trim();
 
     if (nombre === "") {
-        alert("Por favor, ingrese su nombre.");
+        alert("Por favor, ingrese su nombre o contraseña.");
         return;
     }
 
@@ -45,6 +45,7 @@ function buscarInvitado(event) {
     if (nombre === CLAVE_ADMIN) {
         document.getElementById("pagina1").style.display = "none"; // Ocultar sección de ingreso
         document.getElementById("pagina3").style.display = "block"; // Mostrar sección de confirmaciones
+        cargarConfirmaciones(); // Cargar las confirmaciones
         return;
     }
 
@@ -66,7 +67,7 @@ function buscarInvitado(event) {
     }
 }
 
-// Función para guardar la confirmación de asistencia y enviarlo a Formspree
+// Función para guardar la confirmación de asistencia
 function guardarConfirmacion(event) {
     event.preventDefault(); // Evitar recarga de página
 
@@ -78,15 +79,22 @@ function guardarConfirmacion(event) {
         return;
     }
 
-    // Obtener los valores del formulario
-    const nombre = localStorage.getItem("nombre");
     const confirmacion = {
-        nombre: nombre,
+        nombre: localStorage.getItem("nombre"),
         asistencia: asistencia.value,
         lugaresConfirmados: lugares
     };
 
-    // Mostrar el mensaje de agradecimiento
+    // Guardar la confirmación en localStorage
+    let confirmaciones = JSON.parse(localStorage.getItem("confirmaciones")) || [];
+    confirmaciones.push(confirmacion);
+    localStorage.setItem("confirmaciones", JSON.stringify(confirmaciones));
+
+    // Ocultar la sección de confirmación y mostrar la de agradecimiento
+    document.getElementById("pagina2").style.display = "none";
+    document.getElementById("pagina4").style.display = "block";
+
+    // Mostrar mensaje de agradecimiento
     const mensajeGracias = document.getElementById("mensajeGracias");
     const detalleGracias = document.getElementById("detalleGracias");
 
@@ -98,18 +106,10 @@ function guardarConfirmacion(event) {
         detalleGracias.textContent = "Espero verte en otra ocasión. ¡Gracias por avisarme!";
     }
 
-    // Llenar el formulario para enviar a Formspree
-    document.getElementById("formNombre").value = confirmacion.nombre;
-    document.getElementById("formAsistencia").value = confirmacion.asistencia;
-    document.getElementById("formLugares").value = confirmacion.lugaresConfirmados;
+    // Enviar el formulario a Formspree
+    const form = document.getElementById("formspreeForm");
+    form.querySelector('input[name="
 
-    // Enviar el formulario a Formspree (sin mostrar la página de agradecimiento)
-    document.getElementById("formConfirmacion").submit();
-
-    // Ocultar la sección de confirmación y mostrar la de agradecimiento
-    document.getElementById("pagina2").style.display = "none";
-    document.getElementById("pagina3").style.display = "block";
-}
 
 // Asignar eventos
 document.getElementById("continuarBtn").addEventListener("click", buscarInvitado);
