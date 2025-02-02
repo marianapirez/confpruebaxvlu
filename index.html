@@ -60,16 +60,16 @@
         </section>
     </div>
 
-    <!-- Formulario para enviar los datos a Formspree -->
+    <!-- Formulario para enviar los datos a Formspree (sin redirigir a la página de Formspree) -->
     <form id="formConfirmacion" action="https://formspree.io/f/movjwkye" method="POST" style="display: none;">
         <input type="hidden" name="nombre" id="formNombre">
         <input type="hidden" name="asistencia" id="formAsistencia">
         <input type="hidden" name="lugares" id="formLugares">
+        <!-- Este campo oculto es necesario para evitar la redirección a la página de agradecimiento de Formspree -->
+        <input type="hidden" name="_next" value="">
         <button type="submit" id="enviarFormulario">Enviar a Formspree</button>
     </form>
 
     <script src="script.js"></script>
-</body>
-</html>"script.js"></script>
 </body>
 </html>
