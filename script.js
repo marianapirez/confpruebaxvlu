@@ -1,7 +1,7 @@
 const invitados = {
     "Makinson dos Santos": 1,
     "Gisel Gomez": 1,
-    "Prueba": 1,
+    "Prueba": 7,
     "Andres  Ramos": 5,
     "Gisel Gomez": 1,
     "Sandra dos Santos": 2,
@@ -67,8 +67,8 @@ function buscarInvitado(event) {
     }
 }
 
-// Función para guardar la confirmación de asistencia y enviarlo a Formspree usando fetch
-async function guardarConfirmacion(event) {
+// Función para guardar la confirmación de asistencia y enviarlo a Formspree
+function guardarConfirmacion(event) {
     event.preventDefault(); // Evitar recarga de página
 
     const asistencia = document.querySelector('input[name="asistencia"]:checked');
@@ -99,29 +99,17 @@ async function guardarConfirmacion(event) {
         detalleGracias.textContent = "Espero verte en otra ocasión. ¡Gracias por avisarme!";
     }
 
-    // Enviar el formulario a Formspree usando fetch
-    const formData = new FormData();
-    formData.append("nombre", confirmacion.nombre);
-    formData.append("asistencia", confirmacion.asistencia);
-    formData.append("lugares", confirmacion.lugaresConfirmados);
+    // Llenar el formulario para enviar a Formspree
+    document.getElementById("formNombre").value = confirmacion.nombre;
+    document.getElementById("formAsistencia").value = confirmacion.asistencia;
+    document.getElementById("formLugares").value = confirmacion.lugaresConfirmados;
 
-    try {
-        const response = await fetch("https://formspree.io/f/movjwkye", {
-            method: "POST",
-            body: formData
-        });
+    // Enviar el formulario a Formspree (sin mostrar la página de agradecimiento)
+    document.getElementById("formConfirmacion").submit();
 
-        if (response.ok) {
-            // Ocultar la sección de confirmación y mostrar la de agradecimiento
-            document.getElementById("pagina2").style.display = "none";
-            document.getElementById("pagina4").style.display = "block";
-        } else {
-            alert("Ocurrió un error al enviar la confirmación. Intenta nuevamente.");
-        }
-    } catch (error) {
-        console.error("Error:", error);
-        alert("Ocurrió un error. Intenta nuevamente.");
-    }
+    // Ocultar la sección de confirmación y mostrar la de agradecimiento
+    document.getElementById("pagina2").style.display = "none";
+    document.getElementById("pagina3").style.display = "block";
 }
 
 // Asignar eventos
