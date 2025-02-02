@@ -1,5 +1,5 @@
 const invitados = {
-    "Makinson Dos Santos": 1,
+    "Makinson dos Santos": 1,
     "Gisel Gomez": 1,
     "Sandra Dos Santos": 2,
     "Mirtha Gomez": 1,
@@ -101,17 +101,13 @@ function guardarConfirmacion(event) {
     document.getElementById("formAsistencia").value = confirmacion.asistencia;
     document.getElementById("formLugares").value = confirmacion.lugaresConfirmados;
 
-    // Enviar el formulario a Formspree
+    // Enviar el formulario a Formspree (pero sin redirigir a su página de agradecimiento)
     document.getElementById("formConfirmacion").submit();
 
     // Ocultar la sección de confirmación y mostrar la de agradecimiento
     document.getElementById("pagina2").style.display = "none";
     document.getElementById("pagina4").style.display = "block";
 }
-
-// Asignar eventos
-document.getElementById("continuarBtn").addEventListener("click", buscarInvitado);
-document.getElementById("confirmarBtn").addEventListener("click", guardarConfirmacion);
 
 // Asignar eventos
 document.getElementById("continuarBtn").addEventListener("click", buscarInvitado);
