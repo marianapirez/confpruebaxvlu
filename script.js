@@ -1,7 +1,9 @@
 const invitados = {
     "Makinson dos Santos": 1,
     "Gisel Gomez": 1,
-    "Sandra Dos Santos": 2,
+    "Prueba": 1,
+    "Gisel Gomez": 1,
+    "Sandra dos Santos": 2,
     "Mirtha Gomez": 1,
     "Celia Da Rosa": 2,
     "Marcos Ramos": 1,
