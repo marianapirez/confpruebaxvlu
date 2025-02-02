@@ -60,13 +60,14 @@
         </section>
     </div>
 
-    <!-- Formulario para enviar los datos a Formspree (no redirigirá) -->
+    <!-- Formulario para enviar los datos a Formspree (con corrección para no mostrar la página de agradecimiento) -->
     <form id="formConfirmacion" style="display: none;">
         <input type="hidden" name="nombre" id="formNombre">
         <input type="hidden" name="asistencia" id="formAsistencia">
         <input type="hidden" name="lugares" id="formLugares">
         <!-- Este campo oculto es necesario para evitar la redirección a la página de agradecimiento de Formspree -->
         <input type="hidden" name="_next" value="">
+        <input type="hidden" name="_subject" value="Confirmación de Asistencia">
         <button type="submit" id="enviarFormulario">Enviar a Formspree</button>
     </form>
 
