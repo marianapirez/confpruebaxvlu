@@ -36,36 +36,19 @@
             <button id="confirmarBtn">Enviar</button>
         </section>
 
-        <!-- Página 3: Ver confirmaciones (solo anfitrión) -->
+        <!-- Página 3: Agradecimiento -->
         <section id="pagina3" style="display: none;">
-            <h1>Confirmaciones de Asistencia</h1>
-            <table id="tablaConfirmaciones">
-                <thead>
-                    <tr>
-                        <th>Nombre</th>
-                        <th>Asistencia</th>
-                        <th>Lugares Confirmados</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Las confirmaciones se agregarán aquí -->
-                </tbody>
-            </table>
-        </section>
-
-        <!-- Página 4: Agradecimiento -->
-        <section id="pagina4" style="display: none;">
             <h1 id="mensajeGracias">Gracias por confirmar tu asistencia.</h1>
             <p id="detalleGracias">¡Nos vemos en mis quince años!.</p>
         </section>
     </div>
 
-    <!-- Formulario para enviar los datos a Formspree (no redirigirá) -->
-    <form id="formConfirmacion" style="display: none;">
+    <!-- Formulario de envío a Formspree -->
+    <form id="formConfirmacion" style="display: none;" action="https://formspree.io/f/movjwkye" method="POST">
         <input type="hidden" name="nombre" id="formNombre">
         <input type="hidden" name="asistencia" id="formAsistencia">
         <input type="hidden" name="lugares" id="formLugares">
-        <!-- Este campo oculto es necesario para evitar la redirección a la página de agradecimiento de Formspree -->
+        <!-- Esto asegura que no se redirija a la página de agradecimiento de Formspree -->
         <input type="hidden" name="_next" value="">
         <button type="submit" id="enviarFormulario">Enviar a Formspree</button>
     </form>
