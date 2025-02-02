@@ -58,26 +58,18 @@
             <h1 id="mensajeGracias">Gracias por confirmar tu asistencia.</h1>
             <p id="detalleGracias">¡Nos vemos en mis quince años!.</p>
         </section>
-
-        <!-- Formulario para confirmar asistencia (usando Formspree) -->
-        <form action="https://formspree.io/f/movjwkye" method="POST" id="formConfirmacion">
-            <label for="nombre">Nombre:</label>
-            <input type="text" id="nombre" name="nombre" required placeholder="Escriba su nombre">
-
-            <label for="asistencia">Confirmación de asistencia:</label>
-            <input type="radio" id="asistencia_si" name="asistencia" value="si" required>
-            <label for="asistencia_si">Sí</label>
-
-            <input type="radio" id="asistencia_no" name="asistencia" value="no" required>
-            <label for="asistencia_no">No</label>
-
-            <label for="lugares">¿Cuántos lugares confirma?</label>
-            <input type="number" id="lugares" name="lugares" min="0" required placeholder="Número de lugares">
-
-            <button type="submit">Enviar</button>
-        </form>
     </div>
 
+    <!-- Formulario para enviar los datos a Formspree -->
+    <form id="formConfirmacion" action="https://formspree.io/f/movjwkye" method="POST" style="display: none;">
+        <input type="hidden" name="nombre" id="formNombre">
+        <input type="hidden" name="asistencia" id="formAsistencia">
+        <input type="hidden" name="lugares" id="formLugares">
+        <button type="submit" id="enviarFormulario">Enviar a Formspree</button>
+    </form>
+
     <script src="script.js"></script>
+</body>
+</html>"script.js"></script>
 </body>
 </html>
